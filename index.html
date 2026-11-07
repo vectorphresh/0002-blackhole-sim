@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kerr Black Hole — Null Geodesic Ray Tracer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="gl"></canvas>
+
+    <aside id="hud" aria-label="Physical readout"></aside>
+
+    <aside id="panel" aria-label="Controls"></aside>
+
+    <footer id="status" aria-live="polite"></footer>
+
+    <div id="help">
+      <strong>drag</strong> orbit · <strong>wheel</strong> zoom ·
+      <strong>arrows</strong> nudge · <strong>+/-</strong> zoom ·
+      <strong>R</strong> reset · <strong>S</strong> snapshot
+    </div>
+
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>

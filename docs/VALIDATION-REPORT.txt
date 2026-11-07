@@ -1,0 +1,644 @@
+
+──────────────────────────────────────────────────────────────────────────────
+1. METRIC & HORIZON STRUCTURE
+──────────────────────────────────────────────────────────────────────────────
+  PASS  max |g^{mu k} g_{k nu} - delta^mu nu|
+        measured  4.4408921e-16
+        reference 0   (definition of inverse)
+        abs err   4.44e-16    rel err 4.44e-16    tol 1e-12
+  PASS  Schwarzschild g_tt at r=7.3
+        measured  -0.72602740
+        reference -0.72602740   (closed form)
+        abs err   0    rel err 0    tol 1e-14
+  PASS  Schwarzschild g_phiphi at r=7.3
+        measured  4.2325612e+1
+        reference 4.2325612e+1   (closed form)
+        abs err   -0.00000000000000711    rel err 1.68e-16    tol 1e-14
+  PASS  Schwarzschild g_rr at r=7.3
+        measured  1.3773585e+0
+        reference 1.3773585e+0   (closed form)
+        abs err   2.22e-16    rel err 1.61e-16    tol 1e-14
+  PASS  Schwarzschild g_tphi must vanish
+        measured  0
+        reference 0   (static at a=0)
+        abs err   0    rel err 0    tol 1e-14
+  PASS  max |r_+ + r_- - 2M| over spins
+        measured  0
+        reference 0   (sum of horizon roots)
+        abs err   0    rel err 0    tol 1e-12
+  PASS  horizon radius at a=0
+        measured  2.0000000e+0
+        reference 2.0000000e+0   (Schwarzschild r_s = 2M)
+        abs err   0    rel err 0    tol 1e-14
+  PASS  ergosphere meets equator at 2M for any spin
+        measured  2.0000000e+0
+        reference 2.0000000e+0   (closed form)
+        abs err   0    rel err 0    tol 1e-14
+
+──────────────────────────────────────────────────────────────────────────────
+1b. CIRCULAR ORBITS (ISCO, binding energy)
+──────────────────────────────────────────────────────────────────────────────
+  PASS  ISCO at a=0
+        measured  6.0000000e+0
+        reference 6.0000000e+0   (Schwarzschild r_isco = 6M)
+        abs err   0    rel err 0    tol 1e-12
+  PASS  extremal prograde ISCO
+        measured  1.0000000e+0
+        reference 1.0000000e+0   (coincides with the horizon)
+        abs err   0    rel err 0    tol 0.000001
+  PASS  extremal retrograde ISCO
+        measured  9.0000000e+0
+        reference 9.0000000e+0   (r_isco = 9M at a=1)
+        abs err   0    rel err 0    tol 0.000001
+  PASS  marginally bound orbit at a=0
+        measured  4.0000000e+0
+        reference 4.0000000e+0   (r_mb = 4M)
+        abs err   0    rel err 0    tol 1e-9
+  PASS  retrograde ISCO never exceeds 9M  [max 8.9718613e+0]
+  PASS  ISCO a=0 prograde vs numerical marginal stability
+        measured  6.0000000e+0
+        reference 6.0014312e+0   (R=R'=0, R''=0 solved independently)
+        abs err   -0.00143    rel err 0.000238    tol 0.005
+  PASS  ISCO a=0 retrograde vs numerical marginal stability
+        measured  6.0000000e+0
+        reference 6.0014312e+0   (R=R'=0, R''=0 solved independently)
+        abs err   -0.00143    rel err 0.000238    tol 0.005
+  PASS  ISCO a=0.5 prograde vs numerical marginal stability
+        measured  4.2330025e+0
+        reference 4.2364638e+0   (R=R'=0, R''=0 solved independently)
+        abs err   -0.00346    rel err 0.000817    tol 0.005
+  SKIP  numerical ISCO a=0.5 ret (branch tracking failed)
+  PASS  ISCO a=0.9 prograde vs numerical marginal stability
+        measured  2.3208830e+0
+        reference 2.3234919e+0   (R=R'=0, R''=0 solved independently)
+        abs err   -0.00261    rel err 1.12e-3    tol 0.005
+  SKIP  numerical ISCO a=0.9 ret (branch tracking failed)
+  PASS  Schwarzschild efficiency 1-E_isco
+        measured  5.7190958e-2
+        reference 5.7190958e-2   (E_isco = sqrt(8/9))
+        abs err   0    rel err 0    tol 1e-12
+  PASS  extremal prograde E_isco
+        measured  5.7766701e-1
+        reference 5.7735027e-1   (E = 1/sqrt(3) at a=1)
+        abs err   0.000317    rel err 0.000549    tol 0.001
+  PASS  extremal prograde efficiency
+        measured  4.2233299e-1
+        reference 4.2264973e-1   (42.3% bound)
+        abs err   -0.000317    rel err 0.000749    tol 0.001
+
+  convergence of E(r) to 1/sqrt(3) as r -> 1+ for a = 1:
+    eps 1e-2   E 0.5811635268   |E - 1/sqrt(3)| 3.81e-3
+    eps 3e-3   E 0.5785017314   |E - 1/sqrt(3)| 1.15e-3
+    eps 1e-3   E 0.5777348089   |E - 1/sqrt(3)| 0.000385
+    eps 3e-4   E 0.5774657042   |E - 1/sqrt(3)| 0.000115
+    eps 1e-4   E 0.5773887828   |E - 1/sqrt(3)| 0.0000385
+    eps 3e-5   E 0.5773617540   |E - 1/sqrt(3)| 0.0000115
+    eps 1e-5   E 0.5773548413   |E - 1/sqrt(3)| 0.00000457
+    observed order over 1e-2..3e-4: 9.974e-1
+    observed order over 3e-4..1e-5: 9.493e-1
+  PASS  convergence order of E -> 1/sqrt(3)
+        measured  9.7335862e-1
+        reference 1.0000000e+0   (first-order in (r - r_+))
+        abs err   -0.0266    rel err 2.66e-2    tol 0.15
+    round-off floor: best eps 1e-5 gives error 0.00000457
+    (below this, cancellation dominates and the answer degrades)
+  PASS  prograde efficiency increases monotonically with spin  [reaches 1.9014e-1]
+  efficiencies (prograde / retrograde), for reference:
+    a=0     isco 6.00000e+0/6.00000e+0   eta 5.7191e-2/5.7191e-2
+    a=0.5   isco 4.23300e+0/7.55458e+0   eta 8.2118e-2/4.5142e-2
+    a=0.9   isco 2.32088e+0/8.71735e+0   eta 1.5575e-1/3.8998e-2
+    a=0.998 isco 1.23697e+0/8.99437e+0   eta 3.2099e-1/3.7774e-2
+
+──────────────────────────────────────────────────────────────────────────────
+2. EQUATORIAL PHOTON ORBITS vs BARDEEN-PRESS-TEUKOLSKY (1973) Table 1
+──────────────────────────────────────────────────────────────────────────────
+  PASS  r_ph pro  a=0
+        measured  3.0000000e+0
+        reference 3.0000000e+0   (BPT Table 1 (5 s.f.))
+        abs err   2.26e-11    rel err 7.54e-12    tol 0.0001
+  PASS  xi   pro  a=0
+        measured  5.1961524e+0
+        reference 5.1961500e+0   (BPT Table 1 (5 s.f.))
+        abs err   0.00000242    rel err 4.66e-7    tol 0.0001
+  PASS  r_ph ret  a=0
+        measured  3.0000000e+0
+        reference 3.0000000e+0   (BPT Table 1 (5 s.f.))
+        abs err   2.26e-11    rel err 7.54e-12    tol 0.0001
+  PASS  xi   ret  a=0
+        measured  -5.1961524
+        reference -5.1961500   (BPT Table 1 (5 s.f.))
+        abs err   -0.00000242    rel err 4.66e-7    tol 0.0001
+  PASS  r_ph pro  a=0.5
+        measured  2.3472964e+0
+        reference 2.3473000e+0   (BPT Table 1 (5 s.f.))
+        abs err   -0.00000364    rel err 0.00000155    tol 0.0001
+  PASS  xi   pro  a=0.5
+        measured  4.0962667e+0
+        reference 4.0962700e+0   (BPT Table 1 (5 s.f.))
+        abs err   -0.00000334    rel err 8.16e-7    tol 0.0001
+  PASS  r_ph ret  a=0.5
+        measured  3.5320889e+0
+        reference 3.5320900e+0   (BPT Table 1 (5 s.f.))
+        abs err   -0.00000111    rel err 3.15e-7    tol 0.0001
+  PASS  xi   ret  a=0.5
+        measured  -6.1381557
+        reference -6.1381600   (BPT Table 1 (5 s.f.))
+        abs err   0.00000428    rel err 6.97e-7    tol 0.0001
+  PASS  r_ph pro  a=0.9
+        measured  1.5578546e+0
+        reference 1.5578500e+0   (BPT Table 1 (5 s.f.))
+        abs err   0.00000463    rel err 0.00000297    tol 0.0001
+  PASS  xi   pro  a=0.9
+        measured  2.8444214e+0
+        reference 2.8444200e+0   (BPT Table 1 (5 s.f.))
+        abs err   0.00000140    rel err 4.93e-7    tol 0.0001
+  PASS  r_ph ret  a=0.9
+        measured  3.9102679e+0
+        reference 3.9102700e+0   (BPT Table 1 (5 s.f.))
+        abs err   -0.00000206    rel err 5.27e-7    tol 0.0001
+  PASS  xi   ret  a=0.9
+        measured  -6.8323192
+        reference -6.8323200   (BPT Table 1 (5 s.f.))
+        abs err   7.70e-7    rel err 1.13e-7    tol 0.0001
+  PASS  r_ph pro  a=0.998
+        measured  1.0739093e+0
+        reference 1.0739100e+0   (BPT Table 1 (5 s.f.))
+        abs err   -0.000000740    rel err 6.89e-7    tol 0.0001
+  PASS  xi   pro  a=0.998
+        measured  2.1108878e+0
+        reference 2.1108900e+0   (BPT Table 1 (5 s.f.))
+        abs err   -0.00000221    rel err 0.00000104    tol 0.0001
+  PASS  r_ph ret  a=0.998
+        measured  3.9982219e+0
+        reference 3.9982200e+0   (BPT Table 1 (5 s.f.))
+        abs err   0.00000189    rel err 4.73e-7    tol 0.0001
+  PASS  xi   ret  a=0.998
+        measured  -6.9966663
+        reference -6.9966700   (BPT Table 1 (5 s.f.))
+        abs err   0.00000373    rel err 5.33e-7    tol 0.0001
+  PASS  Schwarzschild b_crit
+        measured  5.1961524e+0
+        reference 5.1961524e+0   (closed form)
+        abs err   0    rel err 0    tol 1e-10
+
+──────────────────────────────────────────────────────────────────────────────
+3. NULL CONSTRAINT & CONSERVATION ALONG A TRAJECTORY
+──────────────────────────────────────────────────────────────────────────────
+  PASS  max |g^{mu nu} p_mu p_nu| over tetrads
+        measured  7.7715612e-16
+        reference 0   (null condition)
+        abs err   7.77e-16    rel err 7.77e-16    tol 1e-10
+  trajectory: status=escaped steps=41484 rPeri=2.09895e+0
+  PASS  drift in E along path
+        measured  0
+        reference 0   (stationarity of metric)
+        abs err   0    rel err 0    tol 1e-9
+  PASS  drift in Lz along path
+        measured  0
+        reference 0   (axisymmetry of metric)
+        abs err   0    rel err 0    tol 1e-9
+  PASS  drift in Carter Q along path
+        measured  0
+        reference 0   (Carter (1968) constant)
+        abs err   0    rel err 0    tol 0.000001
+
+──────────────────────────────────────────────────────────────────────────────
+4. CROSS-VALIDATION: Hamilton (metric-only) vs Carter (separated) vs Verlet
+──────────────────────────────────────────────────────────────────────────────
+  escaping rays — rPeri is a physical observable, asserted:
+    a=0 b=8: rPeri  hamilton 6.721877427e+0  carter 6.721879788e+0  verlet 6.722041298e+0
+              |dphi|   3.9562253e+0  3.9548004e+0  3.9575820e+0   (escaped/escaped/escaped)
+  PASS  all three escape a=0 b=8  [escaped/escaped/escaped]
+  PASS  |rPeri hamilton - carter| a=0 b=8
+        measured  0.0000023611620
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.00000236    rel err 0.00000236    tol 0.001
+  PASS  |rPeri hamilton - verlet| a=0 b=8
+        measured  0.00016387096
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.000164    rel err 0.000164    tol 0.001
+  PASS  ||dphi| hamilton - carter| a=0 b=8
+        measured  1.4248185e-3
+        reference 0   (tests/geodesics.test.js)
+        abs err   1.42e-3    rel err 1.42e-3    tol 0.005
+  PASS  ||dphi| hamilton - verlet| a=0 b=8
+        measured  1.3567351e-3
+        reference 0   (tests/geodesics.test.js)
+        abs err   1.36e-3    rel err 1.36e-3    tol 0.005
+    a=0 b=14: rPeri  hamilton 1.290147846e+1  carter 1.290148112e+1  verlet 1.290149988e+1
+              |dphi|   3.4379458e+0  3.4376873e+0  3.4387998e+0   (escaped/escaped/escaped)
+  PASS  all three escape a=0 b=14  [escaped/escaped/escaped]
+  PASS  |rPeri hamilton - carter| a=0 b=14
+        measured  0.0000026587172
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.00000266    rel err 0.00000266    tol 0.001
+  PASS  |rPeri hamilton - verlet| a=0 b=14
+        measured  0.000021417182
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.0000214    rel err 0.0000214    tol 0.001
+  PASS  ||dphi| hamilton - carter| a=0 b=14
+        measured  0.00025851165
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.000259    rel err 0.000259    tol 0.005
+  PASS  ||dphi| hamilton - verlet| a=0 b=14
+        measured  0.00085402319
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.000854    rel err 0.000854    tol 0.005
+    a=0 b=25: rPeri  hamilton 2.399554134e+1  carter 2.399554184e+1  verlet 2.399607556e+1
+              |dphi|   3.1977812e+0  3.1976171e+0  3.1990885e+0   (escaped/escaped/escaped)
+  PASS  all three escape a=0 b=25  [escaped/escaped/escaped]
+  PASS  |rPeri hamilton - carter| a=0 b=25
+        measured  5.0568021e-7
+        reference 0   (tests/geodesics.test.js)
+        abs err   5.06e-7    rel err 5.06e-7    tol 0.001
+  PASS  |rPeri hamilton - verlet| a=0 b=25
+        measured  0.00053422415
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.000534    rel err 0.000534    tol 0.001
+  PASS  ||dphi| hamilton - carter| a=0 b=25
+        measured  0.00016412600
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.000164    rel err 0.000164    tol 0.005
+  PASS  ||dphi| hamilton - verlet| a=0 b=25
+        measured  1.3072302e-3
+        reference 0   (tests/geodesics.test.js)
+        abs err   1.31e-3    rel err 1.31e-3    tol 0.005
+    a=0.5 b=8: rPeri  hamilton 6.906118285e+0  carter 6.906117470e+0  verlet 6.906125258e+0
+              |dphi|   3.8431736e+0  3.8414994e+0  3.8444111e+0   (escaped/escaped/escaped)
+  PASS  all three escape a=0.5 b=8  [escaped/escaped/escaped]
+  PASS  |rPeri hamilton - carter| a=0.5 b=8
+        measured  8.1452797e-7
+        reference 0   (tests/geodesics.test.js)
+        abs err   8.15e-7    rel err 8.15e-7    tol 0.001
+  PASS  |rPeri hamilton - verlet| a=0.5 b=8
+        measured  0.0000069726919
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.00000697    rel err 0.00000697    tol 0.001
+  PASS  ||dphi| hamilton - carter| a=0.5 b=8
+        measured  1.6741482e-3
+        reference 0   (tests/geodesics.test.js)
+        abs err   1.67e-3    rel err 1.67e-3    tol 0.005
+  PASS  ||dphi| hamilton - verlet| a=0.5 b=8
+        measured  1.2374862e-3
+        reference 0   (tests/geodesics.test.js)
+        abs err   1.24e-3    rel err 1.24e-3    tol 0.005
+    a=0.5 b=14: rPeri  hamilton 1.298112274e+1  carter 1.298112868e+1  verlet 1.298155784e+1
+              |dphi|   3.4191273e+0  3.4186626e+0  3.4200367e+0   (escaped/escaped/escaped)
+  PASS  all three escape a=0.5 b=14  [escaped/escaped/escaped]
+  PASS  |rPeri hamilton - carter| a=0.5 b=14
+        measured  0.0000059432669
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.00000594    rel err 0.00000594    tol 0.001
+  PASS  |rPeri hamilton - verlet| a=0.5 b=14
+        measured  0.00043510216
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.000435    rel err 0.000435    tol 0.001
+  PASS  ||dphi| hamilton - carter| a=0.5 b=14
+        measured  0.00046469345
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.000465    rel err 0.000465    tol 0.005
+  PASS  ||dphi| hamilton - verlet| a=0.5 b=14
+        measured  0.00090939653
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.000909    rel err 0.000909    tol 0.005
+    a=0.5 b=25: rPeri  hamilton 2.403512654e+1  carter 2.403512656e+1  verlet 2.403532321e+1
+              |dphi|   3.1933962e+0  3.1937681e+0  3.1949444e+0   (escaped/escaped/escaped)
+  PASS  all three escape a=0.5 b=25  [escaped/escaped/escaped]
+  PASS  |rPeri hamilton - carter| a=0.5 b=25
+        measured  1.7080559e-8
+        reference 0   (tests/geodesics.test.js)
+        abs err   1.71e-8    rel err 1.71e-8    tol 0.001
+  PASS  |rPeri hamilton - verlet| a=0.5 b=25
+        measured  0.00019667006
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.000197    rel err 0.000197    tol 0.001
+  PASS  ||dphi| hamilton - carter| a=0.5 b=25
+        measured  0.00037185040
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.000372    rel err 0.000372    tol 0.005
+  PASS  ||dphi| hamilton - verlet| a=0.5 b=25
+        measured  1.5481709e-3
+        reference 0   (tests/geodesics.test.js)
+        abs err   1.55e-3    rel err 1.55e-3    tol 0.005
+    a=0.9 b=8: rPeri  hamilton 7.002296879e+0  carter 7.002301659e+0  verlet 7.002313697e+0
+              |dphi|   3.7751876e+0  3.7748267e+0  3.7763440e+0   (escaped/escaped/escaped)
+  PASS  all three escape a=0.9 b=8  [escaped/escaped/escaped]
+  PASS  |rPeri hamilton - carter| a=0.9 b=8
+        measured  0.0000047802388
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.00000478    rel err 0.00000478    tol 0.001
+  PASS  |rPeri hamilton - verlet| a=0.9 b=8
+        measured  0.000016817778
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.0000168    rel err 0.0000168    tol 0.001
+  PASS  ||dphi| hamilton - carter| a=0.9 b=8
+        measured  0.00036092340
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.000361    rel err 0.000361    tol 0.005
+  PASS  ||dphi| hamilton - verlet| a=0.9 b=8
+        measured  1.1563199e-3
+        reference 0   (tests/geodesics.test.js)
+        abs err   1.16e-3    rel err 1.16e-3    tol 0.005
+    a=0.9 b=14: rPeri  hamilton 1.302636070e+1  carter 1.302636106e+1  verlet 1.302639585e+1
+              |dphi|   3.4055271e+0  3.4054119e+0  3.4067608e+0   (escaped/escaped/escaped)
+  PASS  all three escape a=0.9 b=14  [escaped/escaped/escaped]
+  PASS  |rPeri hamilton - carter| a=0.9 b=14
+        measured  3.6337900e-7
+        reference 0   (tests/geodesics.test.js)
+        abs err   3.63e-7    rel err 3.63e-7    tol 0.001
+  PASS  |rPeri hamilton - verlet| a=0.9 b=14
+        measured  0.000035152443
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.0000352    rel err 0.0000352    tol 0.001
+  PASS  ||dphi| hamilton - carter| a=0.9 b=14
+        measured  0.00011518789
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.000115    rel err 0.000115    tol 0.005
+  PASS  ||dphi| hamilton - verlet| a=0.9 b=14
+        measured  1.2337501e-3
+        reference 0   (tests/geodesics.test.js)
+        abs err   1.23e-3    rel err 1.23e-3    tol 0.005
+    a=0.9 b=25: rPeri  hamilton 2.405820902e+1  carter 2.405820943e+1  verlet 2.405828174e+1
+              |dphi|   3.1900417e+0  3.1896631e+0  3.1917472e+0   (escaped/escaped/escaped)
+  PASS  all three escape a=0.9 b=25  [escaped/escaped/escaped]
+  PASS  |rPeri hamilton - carter| a=0.9 b=25
+        measured  4.0724070e-7
+        reference 0   (tests/geodesics.test.js)
+        abs err   4.07e-7    rel err 4.07e-7    tol 0.001
+  PASS  |rPeri hamilton - verlet| a=0.9 b=25
+        measured  0.000072718246
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.0000727    rel err 0.0000727    tol 0.001
+  PASS  ||dphi| hamilton - carter| a=0.9 b=25
+        measured  0.00037852896
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.000379    rel err 0.000379    tol 0.005
+  PASS  ||dphi| hamilton - verlet| a=0.9 b=25
+        measured  1.7055654e-3
+        reference 0   (tests/geodesics.test.js)
+        abs err   1.71e-3    rel err 1.71e-3    tol 0.005
+
+  captured rays — rPeri is horizon-overshoot noise, printed not asserted:
+    a=0 b=2.59808e+0 (0.5 b_crit):  rPeri  2.000960028e+0  1.999942502e+0  1.973171285e+0
+              |dphi|   1.4035207e+0  1.4018942e+0  1.4220587e+0   (captured/captured/captured)
+  PASS  all three capture a=0 b=2.59808e+0  [captured/captured/captured]
+  PASS  hamilton rPeri near rMin a=0 b=2.59808e+0  [rPeri=2.0009600281447786, r_+=2, rMin=2.001, |rPeri - rMin|=0.00003997185522131019]
+  PASS  carter rPeri near rMin a=0 b=2.59808e+0  [rPeri=1.9999425022378776, r_+=2, rMin=2.001, |rPeri - rMin|=0.0010574977621222725]
+  PASS  verlet rPeri near rMin a=0 b=2.59808e+0  [rPeri=1.973171285356372, r_+=2, rMin=2.001, |rPeri - rMin|=0.027828714643627794]
+    a=0 b=4.15692e+0 (0.8 b_crit):  rPeri  2.000948500e+0  2.000796735e+0  1.982144009e+0
+              |dphi|   2.7216354e+0  2.7179426e+0  2.7418727e+0   (captured/captured/captured)
+  PASS  all three capture a=0 b=4.15692e+0  [captured/captured/captured]
+  PASS  hamilton rPeri near rMin a=0 b=4.15692e+0  [rPeri=2.000948500002432, r_+=2, rMin=2.001, |rPeri - rMin|=0.000051499997567816536]
+  PASS  carter rPeri near rMin a=0 b=4.15692e+0  [rPeri=2.0007967350989406, r_+=2, rMin=2.001, |rPeri - rMin|=0.00020326490105926354]
+  PASS  verlet rPeri near rMin a=0 b=4.15692e+0  [rPeri=1.9821440090503457, r_+=2, rMin=2.001, |rPeri - rMin|=0.018855990949654178]
+    a=0.5 b=2.04813e+0 (0.5 b_crit):  rPeri  1.866820036e+0  1.865835146e+0  1.860866771e+0
+              |dphi|   3.2061837e+0  3.2315600e+0  1.7571580e+0   (captured/captured/captured)
+  PASS  all three capture a=0.5 b=2.04813e+0  [captured/captured/captured]
+  PASS  hamilton rPeri near rMin a=0.5 b=2.04813e+0  [rPeri=1.8668200364910985, r_+=1.8660254037844386, rMin=1.8670254037844385, |rPeri - rMin|=0.00020536729333997528]
+  PASS  carter rPeri near rMin a=0.5 b=2.04813e+0  [rPeri=1.8658351459119251, r_+=1.8660254037844386, rMin=1.8670254037844385, |rPeri - rMin|=0.0011902578725133672]
+  PASS  verlet rPeri near rMin a=0.5 b=2.04813e+0  [rPeri=1.8608667714404816, r_+=1.8660254037844386, rMin=1.8670254037844385, |rPeri - rMin|=0.00615863234395686]
+    a=0.5 b=3.27701e+0 (0.8 b_crit):  rPeri  1.866695386e+0  1.866977357e+0  1.835434610e+0
+              |dphi|   4.6292637e+0  4.3684802e+0  5.0505567e+0   (captured/captured/captured)
+  PASS  all three capture a=0.5 b=3.27701e+0  [captured/captured/captured]
+  PASS  hamilton rPeri near rMin a=0.5 b=3.27701e+0  [rPeri=1.8666953861380409, r_+=1.8660254037844386, rMin=1.8670254037844385, |rPeri - rMin|=0.0003300176463976179]
+  PASS  carter rPeri near rMin a=0.5 b=3.27701e+0  [rPeri=1.8669773568272239, r_+=1.8660254037844386, rMin=1.8670254037844385, |rPeri - rMin|=0.000048046957214609165]
+  PASS  verlet rPeri near rMin a=0.5 b=3.27701e+0  [rPeri=1.835434610288418, r_+=1.8660254037844386, rMin=1.8670254037844385, |rPeri - rMin|=0.03159079349602045]
+    a=0.9 b=1.42221e+0 (0.5 b_crit):  rPeri  1.436871270e+0  1.435892078e+0  1.427199680e+0
+              |dphi|   7.4464710e+0  7.5517237e+0  5.3360653e+0   (captured/captured/captured)
+  PASS  all three capture a=0.9 b=1.42221e+0  [captured/captured/captured]
+  PASS  hamilton rPeri near rMin a=0.9 b=1.42221e+0  [rPeri=1.4368712701491813, r_+=1.4358898943540672, rMin=1.436889894354067, |rPeri - rMin|=0.000018624204885853146]
+  PASS  carter rPeri near rMin a=0.9 b=1.42221e+0  [rPeri=1.435892078111176, r_+=1.4358898943540672, rMin=1.436889894354067, |rPeri - rMin|=0.0009978162428911919]
+  PASS  verlet rPeri near rMin a=0.9 b=1.42221e+0  [rPeri=1.4271996797627977, r_+=1.4358898943540672, rMin=1.436889894354067, |rPeri - rMin|=0.009690214591269397]
+    a=0.9 b=2.27554e+0 (0.8 b_crit):  rPeri  1.436591805e+0  1.436211725e+0  1.423415178e+0
+              |dphi|   9.0869711e+0  8.9690838e+0  1.0649158e+1   (captured/captured/captured)
+  PASS  all three capture a=0.9 b=2.27554e+0  [captured/captured/captured]
+  PASS  hamilton rPeri near rMin a=0.9 b=2.27554e+0  [rPeri=1.4365918049054096, r_+=1.4358898943540672, rMin=1.436889894354067, |rPeri - rMin|=0.0002980894486575014]
+  PASS  carter rPeri near rMin a=0.9 b=2.27554e+0  [rPeri=1.4362117248390414, r_+=1.4358898943540672, rMin=1.436889894354067, |rPeri - rMin|=0.0006781695150257505]
+  PASS  verlet rPeri near rMin a=0.9 b=2.27554e+0  [rPeri=1.4234151784443572, r_+=1.4358898943540672, rMin=1.436889894354067, |rPeri - rMin|=0.013474715909709944]
+
+  equatorial disk crossings — the renderer's observable, asserted:
+  PASS  tilted launch is null a=0  [residual -2.757126124630638e-16]
+    a=0: crossings  hamilton 1  carter 1  verlet 1   (escaped/escaped/escaped)
+  PASS  hamilton records crossings a=0  [none recorded]
+  PASS  crossing count agrees a=0  [1/1/1]
+      #0 r  4.065532790e+1  4.065401486e+1  4.065551235e+1   phi  1.4973893e-2  1.4973910e-2  1.4973895e-2
+  PASS  crossing 0 r  hamilton - carter a=0
+        measured  1.3130378e-3
+        reference 0   (tests/geodesics.test.js)
+        abs err   1.31e-3    rel err 1.31e-3    tol 0.005
+  PASS  crossing 0 r  hamilton - verlet a=0
+        measured  0.00018445097
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.000184    rel err 0.000184    tol 0.005
+  PASS  crossing 0 phi hamilton - carter a=0
+        measured  1.7172642e-8
+        reference 0   (tests/geodesics.test.js)
+        abs err   1.72e-8    rel err 1.72e-8    tol 0.005
+  PASS  crossing 0 phi hamilton - verlet a=0
+        measured  2.0395932e-9
+        reference 0   (tests/geodesics.test.js)
+        abs err   2.04e-9    rel err 2.04e-9    tol 0.005
+  PASS  crossing 0 direction agrees a=0  [1/1/1]
+  PASS  tilted launch is null a=0.6  [residual -9.182108198779737e-16]
+    a=0.6: crossings  hamilton 1  carter 1  verlet 1   (escaped/escaped/escaped)
+  PASS  hamilton records crossings a=0.6  [none recorded]
+  PASS  crossing count agrees a=0.6  [1/1/1]
+      #0 r  4.065430909e+1  4.065299598e+1  4.065449564e+1   phi  1.5184188e-2  1.5184199e-2  1.5184190e-2
+  PASS  crossing 0 r  hamilton - carter a=0.6
+        measured  1.3131112e-3
+        reference 0   (tests/geodesics.test.js)
+        abs err   1.31e-3    rel err 1.31e-3    tol 0.005
+  PASS  crossing 0 r  hamilton - verlet a=0.6
+        measured  0.00018654829
+        reference 0   (tests/geodesics.test.js)
+        abs err   0.000187    rel err 0.000187    tol 0.005
+  PASS  crossing 0 phi hamilton - carter a=0.6
+        measured  1.0356297e-8
+        reference 0   (tests/geodesics.test.js)
+        abs err   1.04e-8    rel err 1.04e-8    tol 0.005
+  PASS  crossing 0 phi hamilton - verlet a=0.6
+        measured  1.7128959e-9
+        reference 0   (tests/geodesics.test.js)
+        abs err   1.71e-9    rel err 1.71e-9    tol 0.005
+  PASS  crossing 0 direction agrees a=0.6  [1/1/1]
+
+──────────────────────────────────────────────────────────────────────────────
+5. ORDER OF CONVERGENCE (step refinement)
+──────────────────────────────────────────────────────────────────────────────
+  PASS  verlet captured at step 0.08  [status=captured]
+  PASS  verlet captured at step 0.04  [status=captured]
+  PASS  verlet captured at step 0.02  [status=captured]
+  PASS  verlet captured at step 0.01  [status=captured]
+  verlet (expected order 2):
+    step           0.08        0.04        0.02        0.01
+    |dv|       9.973e-1    2.463e-1    6.123e-2    1.527e-2
+    order  2.017e+0   (0.08 -> 0.04)
+    order  2.008e+0   (0.04 -> 0.02)
+    order  2.004e+0   (0.02 -> 0.01)
+  PASS  verlet observed order of convergence
+        measured  2.0097742e+0
+        reference 2.0000000e+0   (Richardson extrapolation)
+        abs err   9.77e-3    rel err 4.89e-3    tol 0.2
+  PASS  hamilton captured at step 1  [status=captured]
+  PASS  hamilton captured at step 0.5  [status=captured]
+  PASS  hamilton captured at step 0.25  [status=captured]
+  PASS  hamilton captured at step 0.125  [status=captured]
+  hamilton (expected order 4):
+    step              1         0.5        0.25       0.125
+    |dv|     0.00004257 0.000002188    1.246e-7    4.268e-9
+    order  4.283e+0   (1 -> 0.5)
+    order  4.134e+0   (0.5 -> 0.25)
+    order  4.867e+0   (0.25 -> 0.125)
+  PASS  hamilton observed order of convergence
+        measured  4.4279889e+0
+        reference 4.0000000e+0   (Richardson extrapolation)
+        abs err   4.28e-1    rel err 1.07e-1    tol 0.225
+  PASS  carter captured at step 0.08  [status=captured]
+  PASS  carter captured at step 0.04  [status=captured]
+  PASS  carter captured at step 0.02  [status=captured]
+  PASS  carter captured at step 0.01  [status=captured]
+  carter (expected order 1):
+    step           0.08        0.04        0.02        0.01
+    |dv|       2.184e-2    1.091e-2    5.455e-3    2.727e-3
+    order  1.001e+0   (0.08 -> 0.04)
+    order  1.000e+0   (0.04 -> 0.02)
+    order  1.000e+0   (0.02 -> 0.01)
+  PASS  carter observed order of convergence
+        measured  1.0004931e+0
+        reference 1.0000000e+0   (Richardson extrapolation)
+        abs err   0.000493    rel err 0.000493    tol 0.4
+
+──────────────────────────────────────────────────────────────────────────────
+6. SCHWARZSCHILD LIGHT DEFLECTION vs POST-NEWTONIAN SERIES
+──────────────────────────────────────────────────────────────────────────────
+  PASS  b=80 escapes  [status=escaped]
+  b=80 (bExact 8.0010002e+1, b/r0 1.00e-2): deflection 5.19218e-2  PN 5.18341e-2  O(b^-3) term 0.0000833021
+  PASS  deflection matches 4/b + 15pi/4b^2  b=80
+        measured  5.1921772e-2
+        reference 5.1834066e-2   (Einstein + 1PN)
+        abs err   0.0000877    rel err 1.69e-3    tol 0.0032141829161964177
+  PASS  b=160 escapes  [status=escaped]
+  b=160 (bExact 1.6002000e+2, b/r0 2.00e-2): deflection 2.54677e-2  PN 2.54570e-2  O(b^-3) term 0.0000104128
+  PASS  deflection matches 4/b + 15pi/4b^2  b=160
+        measured  2.5467660e-2
+        reference 2.5456954e-2   (Einstein + 1PN)
+        abs err   0.0000107    rel err 0.000421    tol 0.000818068073964986
+  PASS  b=320 escapes  [status=escaped]
+  b=320 (bExact 3.2004001e+2, b/r0 4.00e-2): deflection 1.26148e-2  PN 1.26135e-2  O(b^-3) term 0.00000130160
+  PASS  deflection matches 4/b + 15pi/4b^2  b=320
+        measured  1.2614847e-2
+        reference 1.2613457e-2   (Einstein + 1PN)
+        abs err   0.00000139    rel err 0.000110    tol 0.00020638197157812557
+  b * deflection at b=320.0400075015628: 4.0372558e+0  ref 4.0368109e+0
+  PASS  b * deflection -> 4M + 15pi/4b
+        measured  4.0372558e+0
+        reference 4.0368109e+0   (Einstein 1911 + 1PN)
+        abs err   0.000445    rel err 0.000110    tol 0.00020638197157812554
+  deflection ratio b=320 / b=160: 4.95328e-1 (expect ~0.5)
+  PASS  deflection halves when b doubles  [ratio=4.95328e-1]
+  PASS  ray at 0.98 b_crit is captured  [status=captured]
+  PASS  ray at 1.02 b_crit escapes  [status=escaped]
+
+──────────────────────────────────────────────────────────────────────────────
+7. REDSHIFT FACTOR g = E_obs / E_em vs CLOSED-FORM LIMITS
+──────────────────────────────────────────────────────────────────────────────
+  PASS  static g at r=3 (a=0)
+        measured  5.7735027e-1
+        reference 5.7735027e-1   (closed form)
+        abs err   0    rel err 0    tol 1e-12
+  PASS  static g at r=5 (a=0)
+        measured  7.7459667e-1
+        reference 7.7459667e-1   (closed form)
+        abs err   0    rel err 0    tol 1e-12
+  PASS  static g at r=10 (a=0)
+        measured  8.9442719e-1
+        reference 8.9442719e-1   (closed form)
+        abs err   0    rel err 0    tol 1e-12
+  PASS  static g at r=50 (a=0)
+        measured  9.7979590e-1
+        reference 9.7979590e-1   (closed form)
+        abs err   0    rel err 0    tol 1e-12
+  PASS  xi=0 circular-orbit g at r=5 (a=0)
+        measured  6.3245553e-1
+        reference 6.3245553e-1   (closed form)
+        abs err   0    rel err 0    tol 1e-12
+  PASS  xi=0 circular-orbit g at r=10 (a=0)
+        measured  8.3666003e-1
+        reference 8.3666003e-1   (closed form)
+        abs err   0    rel err 0    tol 1e-12
+  PASS  xi=0 circular-orbit g at r=100 (a=0)
+        measured  9.8488578e-1
+        reference 9.8488578e-1   (closed form)
+        abs err   0    rel err 0    tol 1e-12
+  r=100: g 1.0943175e+0  SR Doppler 1.1055416e+0  rel 1.02e-2
+  PASS  SR Doppler limit at r=100  [rel 1.02e-2 < 0.02]
+  r=400: g 1.0486768e+0  SR Doppler 1.0513150e+0  rel 2.51e-3
+  PASS  SR Doppler limit at r=400  [rel 2.51e-3 < 0.005]
+  r=1600: g 1.0246790e+0  SR Doppler 1.0253205e+0  rel 0.000626
+  PASS  SR Doppler limit at r=1600  [rel 0.000626 < 0.00125]
+  PASS  g is null at r=3M (light surface)
+  PASS  g is null inside the light surface
+  PASS  g exists just outside the light surface
+  PASS  max |g(r,a,-xi,-1) - g(r,-a,xi,+1)|
+        measured  0
+        reference 0   (phi -> -phi mirror symmetry)
+        abs err   0    rel err 0    tol 1e-12
+
+  g distribution across the disk (sets the display gain):
+    a=0  rIn=6.0000e+0  2240 disk samples
+      g:  min 5.0212e-1   p01 5.6698e-1   median 8.9096e-1   p99 1.1103e+0
+      display-relevant g^4 span (p99/p01) = 1.471e+1:1
+      raw max g = 1.1949e+0 at r=6.000e+0 xi=6 (r/rIn=1.000e+0) — light-surface divergence, excluded from the gain
+    a=0.5  rIn=4.2330e+0  2492 disk samples
+      g:  min 3.6491e-1   p01 4.5332e-1   median 8.8820e-1   p99 1.2745e+0
+      display-relevant g^4 span (p99/p01) = 6.248e+1:1
+      raw max g = 1.7295e+0 at r=4.233e+0 xi=6 (r/rIn=1.000e+0) — light-surface divergence, excluded from the gain
+    a=0.9  rIn=2.3209e+0  2745 disk samples
+      g:  min 1.5764e-1   p01 2.6841e-1   median 8.8375e-1   p99 1.8798e+0
+      display-relevant g^4 span (p99/p01) = 2406:1
+      raw max g = 1.4469e+2 at r=2.971e+0 xi=6 (r/rIn=1.280e+0) — light-surface divergence, excluded from the gain
+  PASS  T_eff vanishes at the inner edge
+  T_eff peak at r=3.12514217033e+0 (rIn=2.3209), value 5.34992243981e-1
+  analytic x = (5/4)^(4/3) predicts r = 3.12514217006e+0
+  PASS  T_eff peak lies just outside the inner edge
+  PASS  T_eff peak location r/rIn
+        measured  1.3465217e+0
+        reference 1.3465217e+0   (argmax of Shakura-Sunyaev profile)
+        abs err   1.15e-10    rel err 8.58e-11    tol 1e-8
+  PASS  T_eff peak value
+        measured  5.3499224e-1
+        reference 5.3499224e-1   ((4/5) * 5^(-1/4))
+        abs err   0    rel err 0    tol 1e-8
+
+──────────────────────────────────────────────────────────────────────────────
+8. FRAME DRAGGING (Lense-Thirring)
+──────────────────────────────────────────────────────────────────────────────
+  a=0.998: omega_H (closed form) 4.6933170e-1
+    at r = rH + 0.01: omega 4.6450489e-1
+    at r = rH + 0.0001: omega 4.6928329e-1
+    at r = rH + 0.000001: omega 4.6933122e-1
+  PASS  omega approaches Omega_H at the horizon
+        measured  4.6933122e-1
+        reference 4.6933170e-1   (Omega_H = a/(2 r_+))
+        abs err   -0.000000484    rel err 0.00000103    tol 0.002
+  PASS  frame dragging far-field 2a/r^3
+        measured  2.4949373e-7
+        reference 2.4950000e-7   (Lense-Thirring dipole)
+        abs err   -0.00000000000627    rel err 0.0000251    tol 0.005
+
+──────────────────────────────────────────────────────────────────────────────
+SUMMARY
+──────────────────────────────────────────────────────────────────────────────
+  104 numeric checks, 104 within tolerance, 0 failed
+
+  Tightest margins (rel err / tolerance, closest to failing first):
+    0.749x tol   rel 0.000749   extremal prograde efficiency
+    0.549x tol   rel 0.000549   extremal prograde E_isco
+    0.534x tol   rel 0.000534   |rPeri hamilton - verlet| a=0 b=25
+    0.534x tol   rel 0.000110   deflection matches 4/b + 15pi/4b^2  b=320
+    0.534x tol   rel 0.000110   b * deflection -> 4M + 15pi/4b
+    0.526x tol   rel 1.69e-3   deflection matches 4/b + 15pi/4b^2  b=80
+    0.514x tol   rel 0.000421   deflection matches 4/b + 15pi/4b^2  b=160
+    0.476x tol   rel 1.07e-1   hamilton observed order of convergence
+
+  ALL CHECKS PASSED

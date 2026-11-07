@@ -1,0 +1,21 @@
+{
+  "name": "black-hole-simulation",
+  "version": "0.1.0",
+  "description": "Production-grade real-time Kerr black hole ray tracer with null geodesic integration, relativistic disk emission, and numerical validation.",
+  "license": "MIT",
+  "author": "Mitch Francis <vectorphresh@phresh.dev>",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "serve": "node serve.js",
+    "start": "node serve.js",
+    "test": "node --test \"tests/**/*.test.js\"",
+    "test:watch": "node --test --watch \"tests/**/*.test.js\"",
+    "validate": "node scripts/validate.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

@@ -1,0 +1,271 @@
+/* Dark, minimal chrome so the render is the only thing with contrast. */
+
+:root {
+  --bg: #06070a;
+  --panel: rgba(14, 16, 22, 0.82);
+  --border: rgba(255, 255, 255, 0.09);
+  --text: #cfd3dc;
+  --dim: #7d8493;
+  --accent: #7fb2ff;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font: 12px/1.45 var(--mono);
+}
+
+#gl {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+  touch-action: none;
+}
+
+#gl:active {
+  cursor: grabbing;
+}
+
+/* ---------------------------------------------------------------- HUD */
+
+#hud {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  max-width: 340px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+  user-select: none;
+}
+
+#hud .row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+#hud .row + .row {
+  margin-top: 2px;
+}
+
+#hud .k {
+  color: var(--dim);
+}
+
+#hud .v {
+  color: var(--text);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* -------------------------------------------------------------- Panel */
+
+#panel {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  width: 268px;
+  max-height: calc(100vh - 88px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 8px 10px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  backdrop-filter: blur(10px);
+  scrollbar-width: thin;
+}
+
+#panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+#panel::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 4px;
+}
+
+#panel details {
+  border-top: 1px solid var(--border);
+  padding: 6px 0;
+}
+
+#panel details:first-of-type {
+  border-top: none;
+}
+
+#panel summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+#panel summary::after {
+  content: "−";
+  color: var(--dim);
+}
+
+#panel details:not([open]) summary::after {
+  content: "+";
+}
+
+#panel .field {
+  margin: 7px 0;
+}
+
+#panel .field label {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 3px;
+}
+
+#panel .name {
+  color: var(--dim);
+}
+
+#panel .value {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+#panel .check {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+}
+
+#panel input[type="range"] {
+  width: 100%;
+  height: 4px;
+  margin: 0;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+#panel input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 11px;
+  height: 11px;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+#panel input[type="range"]::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+#panel input[type="checkbox"] {
+  accent-color: var(--accent);
+}
+
+#panel .actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+#panel button {
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+#panel button:hover {
+  background: rgba(255, 255, 255, 0.11);
+}
+
+#panel button.active {
+  border-color: #ff6b6b;
+  color: #ff8f8f;
+}
+
+/* ------------------------------------------------------------- Status */
+
+#status {
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  gap: 14px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+#status.error {
+  color: #ff8f8f;
+  border-color: rgba(255, 107, 107, 0.4);
+  pointer-events: auto;
+  max-width: 60ch;
+}
+
+#help {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--dim);
+  pointer-events: none;
+}
+
+#help strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  #hud {
+    font-size: 11px;
+    max-width: 260px;
+  }
+  #panel {
+    width: 220px;
+  }
+  #help {
+    display: none;
+  }
+}
